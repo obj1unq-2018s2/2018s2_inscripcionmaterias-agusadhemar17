@@ -1,22 +1,29 @@
 import materias.*
 import carrera.*
 
+
+
 class Estudiante {
 
 	var materiasAprobadas = []
-	// var materiasInscripto=[]
-	var correlativas = #{ correlativas.materias() } // conjunto de materias
+	var materiasInscripto = []
+	var correlativas = materia.materiasCorrelativas() 
 	var creditos = 0
-	var anioEnCurso
+	//var anioEnCurso = anio.curso()
 
 	method puedoCursar(materia) {
-		return not self.yaLaCurse(materia) 
+		return not self.yaLaAprobe(materia) 
 		and self.aprobeCorrelativas(materia) 
 		and (materia.creditosNecesarios(materia) <= creditos)
-		and anioQueCorresponde 
+		and self.termineCursoAnterior()
+	
 	}
 
-	method yaLaCurse(materia) {
+	method termineCursoAnterior(){
+		return materiasAprobadas.contains(correlativas)
+	}
+	
+	method yaLaAprobe(materia) {
 		return materiasAprobadas.contains(materia)
 	}
 
@@ -25,7 +32,7 @@ class Estudiante {
 	}
 
 	method esMateriaDeMiCarrera(materia) {
-	// return carrera.materias().contains(materia)
+	// return curso.materias().contains(materia)
 	}
 
 	method aprobeMateria(materia) {
@@ -36,10 +43,12 @@ class Estudiante {
 	method nota(materia) {
 		if (materia.nota() >= 7) {
 			self.aprobeMateria(materia)
+			
 		}
 	}
 
-}
+	method meInscribi(materia) {
+		materiasInscripto.add(materia)
+	}
 
-//#{1, 2}.equals(#{2, 1})
-//#{1, 2}.intersection(#{5, 2}) => #{2} 
+}
