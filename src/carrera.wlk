@@ -1,19 +1,9 @@
-import estudiantes.*
-import materias.*
-
 class Carrera {
-
+	 
+	var property materias=[]
 	
-	var property cursos =[]
-	method alumnosInscriptosPorMateria(materia) {
-		return materia.alumnosInscriptos()
-	}
-
+	method materiasAnio(anio) {
+    	return materias.filter { materia => materia.anio() == anio }
+    }
 }
 
-class Curso{
-	
-	var property anio
-	var materias = []
-	
-}
