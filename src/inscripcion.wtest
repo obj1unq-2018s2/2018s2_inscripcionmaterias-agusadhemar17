@@ -5,6 +5,8 @@ import universidad.*
 
 describe "inscripcion" {
 
+	// TODO Es muy incómodo tener que inicializar todos los atributos acá, evitalo.
+	// TODO El nombre de la materia no puede ser == la materia, no es lo mismo, en todo caso para eso tenemos self.
 	var mate1 = new Materia(carrera = tpi, nombre = mate1, anio = 1, inscriptos = [], listaDeEspera = [], creditosNecesarios = 0, creditosOtorgados = 9, mCorrelativas = [], alumnosAprobaron = [ joseAlvarez ], cupo = 20)
 	var intro = new Materia(carrera = tpi, nombre = intro, anio = 1, inscriptos = [ laraLopez ], listaDeEspera = [], creditosNecesarios = 0, creditosOtorgados = 9, mCorrelativas = [], alumnosAprobaron = [ laraLopez ], cupo = 15)
 	var orga = new Materia(carrera = tpi, nombre = orga, anio = 1, inscriptos = [], listaDeEspera = [], creditosNecesarios = 0, creditosOtorgados = 9, mCorrelativas = [], alumnosAprobaron = [ joseAlvarez ], cupo = 15)
@@ -13,7 +15,8 @@ describe "inscripcion" {
 	var joseAlvarez = new Estudiante(materiasAprobadas = [ orga ], materiasInscripto = [], carrerasCursando = [ tpi ], anioActual = 2, creditosTotales = 18, esperoCupo = [])
 	var tpi = new Carrera(materias = [ orga, intro ])
 		
-		
+	
+	// TODO Este no está bien.
 	test "jose se quiere inscribir a orga "{ 
 		joseAlvarez.inscribirAlumno(orga)
 		assert.notThat(joseAlvarez.materiasInscripto().contains(orga))
